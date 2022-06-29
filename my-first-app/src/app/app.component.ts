@@ -12,6 +12,4 @@ import { Component } from '@angular/core';
     `,
   ],
 })
-export class AppComponent {
-  name = 'Gustavo';
-}
+export class AppComponent {}
