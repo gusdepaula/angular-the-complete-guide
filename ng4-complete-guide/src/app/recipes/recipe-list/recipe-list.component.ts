@@ -11,7 +11,12 @@ export class RecipeListComponent implements OnInit {
     new Recipe(
       'A Test Recipe',
       'This is a simply test',
-      'https://www.delicious.com.au/recipes/chicken-chickpea-coconut-curry-recipe/s7g4id37?r=recipes/collections/i66gak0q'
+      'https://images.immediate.co.uk/production/volatile/sites/30/2020/08/chorizo-mozarella-gnocchi-bake-cropped-9ab73a3.jpg'
+    ),
+    new Recipe(
+      'A Test Recipe',
+      'This is a simply test',
+      'https://images.immediate.co.uk/production/volatile/sites/30/2020/08/chorizo-mozarella-gnocchi-bake-cropped-9ab73a3.jpg'
     ),
   ];
 
