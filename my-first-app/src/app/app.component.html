@@ -1,11 +1,11 @@
 <div class="container">
+  <app-cockpit></app-cockpit>
+  <hr />
   <div class="row">
-    <div class="col-md-12">
-      <h3>I'm in the AppComponent</h3>
-      <hr />
-      <app-servers></app-servers>
-      <!-- <div app-servers></div> -->
-      <!-- <div class="app-servers"></div> -->
+    <div class="col-xs-12">
+      <app-server-element
+        *ngFor="let serverElement of serverElements"
+      ></app-server-element>
     </div>
   </div>
 </div>
