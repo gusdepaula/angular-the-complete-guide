@@ -1,11 +1,6 @@
 <div class="card">
   <div class="card-body">
     <h5 class="card-title">{{ element.name }}</h5>
-    <p>
-      <strong *ngIf="element.type === 'server'" style="color: red">{{
-        element.content
-      }}</strong>
-      <em *ngIf="element.type === 'blueprint'">{{ element.content }}</em>
-    </p>
+    <ng-content></ng-content>
   </div>
 </div>
