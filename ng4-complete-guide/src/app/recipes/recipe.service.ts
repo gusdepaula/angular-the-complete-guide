@@ -1,1 +1,20 @@
-export class RecipeService {}
+import { Recipe } from './recipe.module';
+
+export class RecipeService {
+  recipes: Recipe[] = [
+    new Recipe(
+      'A Test Recipe',
+      'This is a simply test',
+      'https://images.immediate.co.uk/production/volatile/sites/30/2020/08/chorizo-mozarella-gnocchi-bake-cropped-9ab73a3.jpg'
+    ),
+    new Recipe(
+      'Second test recipe',
+      'This is a simply test',
+      'https://images.immediate.co.uk/production/volatile/sites/30/2020/08/chorizo-mozarella-gnocchi-bake-cropped-9ab73a3.jpg'
+    ),
+  ];
+
+  getRecipes() {
+    return this.recipes.slice();
+  }
+}
