@@ -25,7 +25,7 @@ module.exports = function (config) {
       suppressAll: true // removes the duplicated traces
     },
     coverageReporter: {
-      dir: require('path').join(__dirname, './coverage/forms-td-start'),
+      dir: require('path').join(__dirname, './coverage/ng4-complete-guide'),
       subdir: '.',
       reporters: [
         { type: 'html' },
