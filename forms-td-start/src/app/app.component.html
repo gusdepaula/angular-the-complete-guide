@@ -2,7 +2,7 @@
   <div class="row">
     <div class="col-xs-12 col-sm-10 col-md-8 col-sm-offset-1 col-md-offset-2">
       <form (ngSubmit)="onSubmit()" #f="ngForm">
-        <div id="user-data" ngModelGroup="userdata" #userData="ngModelGroup">
+        <div id="user-data" ngModelGroup="userData" #userData="ngModelGroup">
           <div class="form-group">
             <label for="username">Username</label>
             <input
@@ -14,7 +14,11 @@
               required
             />
           </div>
-          <button class="btn btn-default" type="button">
+          <button
+            class="btn btn-default"
+            type="button"
+            (click)="suggestUserName()"
+          >
             Suggest an Username
           </button>
           <div class="form-group">
