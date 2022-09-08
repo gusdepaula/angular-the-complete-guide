@@ -3,6 +3,7 @@ import { Ingredient } from '../shared/ingredient.module';
 
 export class ShoppingListService {
   ingrendientsChanged = new Subject<Ingredient[]>();
+  startedEditing = new Subject<number>();
   private ingredients: Ingredient[] = [
     new Ingredient('Apples', 5),
     new Ingredient('Tomates', 10),
