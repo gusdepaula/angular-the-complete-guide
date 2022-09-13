@@ -18,6 +18,10 @@ export class RecipeEditComponent implements OnInit {
     private recipeService: RecipeService
   ) {}
 
+  onSubmit() {
+    console.log(this.recipeForm);
+  }
+
   ngOnInit() {
     this.route.params.subscribe((params: Params) => {
       this.id = +params['id'];
