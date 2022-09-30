@@ -18,4 +18,14 @@ export class DataStorageService {
         console.log(response);
       });
   }
+
+  fetchRecipes() {
+    this.http
+      .get<Recipe[]>(
+        'https://ng-course-recipe-book-d8cfa-default-rtdb.firebaseio.com/recipes.json'
+      )
+      .subscribe((recipes) => {
+        this.recipeService.setRecipes(recipes);
+      });
+  }
 }
