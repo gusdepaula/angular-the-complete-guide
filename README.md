@@ -15,5 +15,5 @@ ng serve
 
 ## :computer: Project in production
 
-[URL :dizzy:](https://ng-course-recipe-book-d8cfa.web.app/)
+[Firabase Project Url :dizzy:](https://ng-course-recipe-book-d8cfa.web.app/)
 
