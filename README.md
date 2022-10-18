@@ -1,6 +1,6 @@
 ## :dart: Objective
 
-> Udemy Course - Master Angular 13(formely "Angular 2") and build awesome, reactive web apps with the successor of AngularJs
+Udemy Course - Master Angular 13(formely "Angular 2") and build awesome, reactive web apps with the successor of AngularJs
 
 ## :hammer_and_wrench: Tools
 
