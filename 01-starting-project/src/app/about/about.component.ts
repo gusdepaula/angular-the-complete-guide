@@ -1,6 +1,7 @@
-import { Component } from '@angular/core';
+import { Component } from "@angular/core";
 
 @Component({
-  templateUrl: './about.component.html'
+  standalone: true,
+  templateUrl: "./about.component.html",
 })
 export class AboutComponent {}
