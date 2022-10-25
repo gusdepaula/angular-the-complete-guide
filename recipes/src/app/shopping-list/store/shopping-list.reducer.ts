@@ -1,4 +1,3 @@
-import { Action } from '@ngrx/store';
 import { Ingredient } from '../../shared/ingredient.module';
 import * as ShoppingListActions from './shopping-list.actions';
 
@@ -34,32 +33,34 @@ export function shoppingListReducer(
         ingredients: [...state.ingredients, ...action.payload],
       };
     case ShoppingListActions.UPDATE_INGREDIENT:
-      const ingredient = state.ingredients[action.payload.index];
+      const ingredient = state.ingredients[state.editedIngredientIndex];
       const updateIngredient = {
         ...ingredient,
-        ...action.payload.ingredient,
+        ...action.payload,
       };
       const updateIngredients = [...state.ingredients];
-      updateIngredients[action.payload.index] = updateIngredient;
+      updateIngredients[state.editedIngredientIndex] = updateIngredient;
       return {
         ...state,
         ingredients: updateIngredients,
+        editedIngredientIndex: -1,
+        editedIngredient: null,
       };
     case ShoppingListActions.DELETE_INGREDIENT:
       return {
         ...state,
         ingredients: state.ingredients.filter((ig: any, igIndex: number) => {
-          return igIndex !== action.payload;
+          return igIndex !== state.editedIngredientIndex;
         }),
       };
     case ShoppingListActions.START_EDIT:
       return {
         ...state,
-        editIngredientIndex: action.payload,
-        editIngredient: { ...state.ingredients[action.payload] },
+        editedIngredientIndex: action.payload,
+        editedIngredient: { ...state.ingredients[action.payload] },
       };
     case ShoppingListActions.STOP_EDIT:
-      return { ...state, editIngredientIndex: null, editIngredient: -1 };
+      return { ...state, editedIngredientIndex: null, editedIngredient: -1 };
     default:
       return state;
   }
