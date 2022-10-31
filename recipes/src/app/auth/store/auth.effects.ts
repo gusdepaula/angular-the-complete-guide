@@ -1,10 +1,11 @@
 import { HttpClient } from '@angular/common/http';
 import { Actions, ofType, Effect } from '@ngrx/effects';
-import { switchMap, catchError, map } from 'rxjs/operators';
+import { switchMap, catchError, map, tap } from 'rxjs/operators';
 import { of } from 'rxjs';
 import { environment } from '../../../environments/environment';
 import * as AuthActions from './auth.actions';
 import { Injectable } from '@angular/core';
+import { Router } from '@angular/router';
 
 export interface AuthResponseData {
   king: string;
@@ -24,7 +25,7 @@ export class AuthEffects {
     switchMap((authData: AuthActions.LoginStart) => {
       return this.http
         .post<AuthResponseData>(
-          'https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=' +
+          'https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=' +
             environment.firebaseAPIKey,
           {
             email: authData.payload.email,
@@ -33,26 +34,64 @@ export class AuthEffects {
           }
         )
         .pipe(
-          catchError((error) => {
-            //..
-            return of();
-          }),
           map((resData) => {
             const expirationDate = new Date(
               new Date().getTime() + +resData.expiresIn * 1000
             );
-            return of(
-              new AuthActions.Login({
-                email: resData.email,
-                userId: resData.localId,
-                token: resData.idToken,
-                expirationDate: expirationDate,
-              })
-            );
+            return new AuthActions.Login({
+              email: resData.email,
+              userId: resData.localId,
+              token: resData.idToken,
+              expirationDate: expirationDate,
+            });
+          }),
+          catchError((errorRes) => {
+            let errorMessage = 'An unknow error occurred!';
+            if (!errorRes.error || !errorRes.error.error) {
+              return of(new AuthActions.LoginFail(errorMessage));
+            }
+            switch (errorRes.error.error.message) {
+              case 'EMAIL_EXISTS':
+                errorMessage =
+                  'The email address is already in use by another account.';
+                break;
+              case 'OPERATION_NOT_ALLOWED':
+                errorMessage = 'Password sign-in is disabled for this project.';
+                break;
+              case 'TOO_MANY_ATTEMPTS_TRY_LATER':
+                errorMessage =
+                  'We have blocked all requests from this device due to unusual activity. Try again later.';
+                break;
+              case 'EMAIL_NOT_FOUND':
+                errorMessage =
+                  'There is no user record corresponding to this identifier. The user may have been deleted.';
+                break;
+              case 'INVALID_PASSWORD':
+                errorMessage =
+                  'The password is invalid or the user does not have a password.';
+                break;
+              case 'USER_DISABLED':
+                errorMessage =
+                  'The user account has been disabled by an administrator.';
+                break;
+            }
+            return of(new AuthActions.LoginFail(errorMessage));
           })
         );
     })
   );
 
-  constructor(private actions$: Actions, private http: HttpClient) {}
+  @Effect({ dispatch: false })
+  authSuccess = this.actions$.pipe(
+    ofType(AuthActions.LOGIN),
+    tap(() => {
+      this.router.navigate(['/']);
+    })
+  );
+
+  constructor(
+    private actions$: Actions,
+    private http: HttpClient,
+    private router: Router
+  ) {}
 }

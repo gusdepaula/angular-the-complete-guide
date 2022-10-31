@@ -38,6 +38,9 @@ export class AuthComponent implements OnInit, OnDestroy {
     this.store.select('auth').subscribe((authState) => {
       this.isLoading = authState.loading;
       this.error = authState.authError;
+      if (this.error) {
+        this.showErrorAlert(this.error);
+      }
     });
   }
 
