@@ -7,6 +7,7 @@ import * as AuthActions from './auth.actions';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { User } from '../user.model';
+import { AuthService } from '../auth.service';
 
 export interface AuthResponseData {
   king: string;
@@ -24,7 +25,7 @@ const handleAuthentication = (
   userId: string,
   token: string
 ) => {
-  const expirationDate = new Date(new Date().getTime() + +expiresIn * 1000);
+  const expirationDate = new Date(new Date().getTime() + +expiresIn);
   const user = new User(email, userId, token, expirationDate);
   localStorage.setItem('userData', JSON.stringify(user));
   return new AuthActions.AutheticateSuccess({
@@ -83,6 +84,9 @@ export class AuthEffects {
           }
         )
         .pipe(
+          tap((resData) => {
+            this.authService.setLogoutTimer(+resData.expiresIn * 1000);
+          }),
           map((resData) => {
             return handleAuthentication(
               +resData.expiresIn,
@@ -129,7 +133,7 @@ export class AuthEffects {
 
   @Effect({ dispatch: false })
   authRedirect = this.actions$.pipe(
-    ofType(AuthActions.AUTHETICATE_SUCCESS, AuthActions.LOGOUT),
+    ofType(AuthActions.AUTHETICATE_SUCCESS),
     tap(() => {
       this.router.navigate(['/']);
     })
@@ -158,16 +162,16 @@ export class AuthEffects {
       );
 
       if (loadedUser.token) {
+        const expirationDurantion =
+          new Date(userData._tokenExpirationDate).getTime() -
+          new Date().getTime();
+        this.authService.setLogoutTimer(expirationDurantion);
         return new AuthActions.AutheticateSuccess({
           email: loadedUser.email,
           userId: loadedUser.id,
           token: loadedUser.token,
           expirationDate: new Date(userData._tokenExpirationDate),
         });
-        // const expirationDurantion =
-        //   new Date(userData._tokenExpirationDate).getTime() -
-        //   new Date().getTime();
-        // this.autoLogout(expirationDurantion);
       }
       return {
         type: 'DUMMY',
@@ -179,13 +183,16 @@ export class AuthEffects {
   authLogout = this.actions$.pipe(
     ofType(AuthActions.LOGOUT),
     tap(() => {
+      this.authService.clearLogoutTimer();
       localStorage.removeItem('userData');
+      this.router.navigate(['/auth']);
     })
   );
 
   constructor(
     private actions$: Actions,
     private http: HttpClient,
-    private router: Router
+    private router: Router,
+    private authService: AuthService
   ) {}
 }
