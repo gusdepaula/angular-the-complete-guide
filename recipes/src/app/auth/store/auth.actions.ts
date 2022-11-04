@@ -17,6 +17,7 @@ export class AutheticateSuccess implements Action {
       userId: string;
       token: string;
       expirationDate: Date;
+      redirect: boolean;
     }
   ) {}
 }
