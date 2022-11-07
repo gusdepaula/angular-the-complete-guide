@@ -1,11 +1,12 @@
 import { NgModule } from '@angular/core';
-import { RouterModule, Routes } from '@angular/router';
-import { AuthGuard } from '../auth/auth.guard';
-import { RecipeDetailComponent } from './recipe-detail/recipe-detail.component';
-import { RecipeEditComponent } from './recipe-edit/recipe-edit.component';
-import { RecipeStartComponent } from './recipe-start/recipe-start.component';
+import { Routes, RouterModule } from '@angular/router';
+
 import { RecipesComponent } from './recipes.component';
-import { RecipeResolverService } from './recipes.resolver.service';
+import { AuthGuard } from '../auth/auth.guard';
+import { RecipeStartComponent } from './recipe-start/recipe-start.component';
+import { RecipeEditComponent } from './recipe-edit/recipe-edit.component';
+import { RecipeDetailComponent } from './recipe-detail/recipe-detail.component';
+import { RecipesResolverService } from './recipes-resolver.service';
 
 const routes: Routes = [
   {
@@ -18,19 +19,19 @@ const routes: Routes = [
       {
         path: ':id',
         component: RecipeDetailComponent,
-        resolve: [RecipeResolverService],
+        resolve: [RecipesResolverService]
       },
       {
         path: ':id/edit',
         component: RecipeEditComponent,
-        resolve: [RecipeResolverService],
-      },
-    ],
-  },
+        resolve: [RecipesResolverService]
+      }
+    ]
+  }
 ];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
-  exports: [RouterModule],
+  exports: [RouterModule]
 })
 export class RecipesRoutingModule {}

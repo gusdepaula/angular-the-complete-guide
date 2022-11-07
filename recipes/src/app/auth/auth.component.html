@@ -9,12 +9,12 @@
       *ngIf="error"
       (close)="onHandleError()"
     ></app-alert> -->
-    <div *ngIf="isLoading" style="text-align: center">
+    <div *ngIf="isLoading" style="text-align: center;">
       <app-loading-spinner></app-loading-spinner>
     </div>
     <form #authForm="ngForm" (ngSubmit)="onSubmit(authForm)" *ngIf="!isLoading">
       <div class="form-group">
-        <label for="email">E-mail</label>
+        <label for="email">E-Mail</label>
         <input
           type="email"
           id="email"
@@ -43,11 +43,11 @@
           type="submit"
           [disabled]="!authForm.valid"
         >
-          {{ isLogingMode ? "Login" : "Sign Up" }}
+          {{ isLoginMode ? 'Login' : 'Sign Up' }}
         </button>
         |
-        <button class="btn btn-primary" (click)="onSwitchMode()">
-          Switch to {{ isLogingMode ? "Sign Up" : "Login" }}
+        <button class="btn btn-primary" (click)="onSwitchMode()" type="button">
+          Switch to {{ isLoginMode ? 'Sign Up' : 'Login' }}
         </button>
       </div>
     </form>

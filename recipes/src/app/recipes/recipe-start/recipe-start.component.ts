@@ -9,7 +9,7 @@ export class RecipeStartComponent implements OnInit {
 
   constructor() { }
 
-  ngOnInit(): void {
+  ngOnInit() {
   }
 
 }
