@@ -7,7 +7,7 @@ let age: number;
 
 age = 12;
 
-let userName: string;
+let userName: string | string[];
 
 userName = "Gustavo";
 
@@ -38,6 +38,6 @@ let people: {
 }[];
 
 // Type Inference
-let couse = "React - The complete guide";
+let course: string | number = "React - The complete guide";
 
-// course = 1234;
+course = 1234;
