@@ -40,3 +40,12 @@ let people: Person[];
 let course: string | number = "React - The complete guide";
 
 course = 1234;
+
+// Functions & Types
+function add(a: number, b: number): number | string {
+  return a + b;
+}
+
+function print(value: any) {
+  console.log(value);
+}
