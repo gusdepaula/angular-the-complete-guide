@@ -62,3 +62,31 @@ const updatedArray = insertAtBeginning(demoArray, -1);
 const stringArray = insertAtBeginning(["a", "b", "c"], "d");
 
 //updatedArray[0].split("");
+
+class Student {
+  //   firstName: string;
+  //   lastName: string;
+  //   age: number;
+  //   courses: string[];
+
+  constructor(
+    public first: string,
+    public last: string,
+    public age: number,
+    private courses: string[]
+  ) {}
+
+  enrol(courseName: string) {
+    this.courses.push(courseName);
+  }
+
+  listCourses() {
+    return this.courses.slice();
+  }
+}
+
+const student = new Student("Gustavo", "de Paula", 39, ["Angular"]);
+student.enrol("React");
+// student.listCourses();
+
+// studente.courses => Angular, React
