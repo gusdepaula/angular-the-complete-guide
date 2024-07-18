@@ -17,4 +17,8 @@ export class UserComponent {
   get imagePath() {
     return 'assets/users/' + this.selectedUser.avatar;
   }
+
+  onSelectUser() {
+    console.log('Clicked!');
+  }
 }
