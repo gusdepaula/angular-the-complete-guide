@@ -12,7 +12,7 @@
     </tr>
   </thead>
   <tbody>
-    @for (result of results(); track result.year) {
+    @for (result of results; track result.year) {
     <tr>
       <td>{{ result.year }}</td>
       <td>{{ result.valueEndOfYear | currency : "BRL" }}</td>
