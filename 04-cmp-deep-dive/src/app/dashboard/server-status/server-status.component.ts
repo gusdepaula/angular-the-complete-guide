@@ -34,7 +34,7 @@ export class ServerStatusComponent implements OnInit {
       }
     }, 5000);
 
-    this.destroyRef.OnDestroy(() => {
+    this.destroyRef.onDestroy(() => {
       clearInterval(interval);
     });
   }
