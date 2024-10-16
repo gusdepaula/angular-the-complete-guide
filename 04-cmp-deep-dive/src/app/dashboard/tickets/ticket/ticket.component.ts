@@ -1,4 +1,4 @@
-import { Component, input, output, signal } from "@angular/core";
+import { Component, Input, Output, input, output, signal } from "@angular/core";
 import { Ticket } from "../ticket.model";
 
 @Component({
@@ -9,7 +9,9 @@ import { Ticket } from "../ticket.model";
   styleUrl: "./ticket.component.css",
 })
 export class TicketComponent {
+  // @Input({})...
   data = input.required<Ticket>();
+  // @Output("closetTicket")
   close = output();
   detailsVisible = signal(false);
 
