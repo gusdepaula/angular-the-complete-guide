@@ -5,6 +5,7 @@ import { LearningResourcesComponent } from './learning-resources/learning-resour
 import { AuthService } from './auth/auth.service';
 import { CommonModule } from '@angular/common';
 import { AuthDirective } from './auth/auth.directive';
+import { LogDirective } from './log.directive';
 
 @Component({
   selector: 'app-root',
@@ -16,6 +17,7 @@ import { AuthDirective } from './auth/auth.directive';
     AuthComponent,
     LearningResourcesComponent,
     AuthDirective,
+    LogDirective,
   ],
 })
 export class AppComponent {
