@@ -25,7 +25,7 @@
       </div>
     </header>
     <ul>
-      @for (temperature of historicTemperatures | sort: 'desc'; track
+      @for (temperature of historicTemperatures; track
       temperature) {
       <li (click)="onReset($index)">{{ temperature | temp : "cel" }}</li>
       }
