@@ -11,11 +11,8 @@ import { TaskService } from '../tasks.service';
 })
 export class NewTaskComponent {
   private formEl = viewChild<ElementRef<HTMLFormElement>>('form');
-  private tasksService: TaskService;
 
-  constructor() {
-    this.tasksService = new TaskService();
-  }
+  constructor(private tasksService: TaskService) {}
 
   onAddTask(title: string, description: string) {
     this.tasksService.addTask({ title, description });
