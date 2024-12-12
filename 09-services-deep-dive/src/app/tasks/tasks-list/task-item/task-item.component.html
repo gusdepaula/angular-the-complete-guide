@@ -13,7 +13,7 @@
   <form (ngSubmit)="onChangeTaskStatus(task().id, status.value)">
     <select #status>
       @for (option of taskStatusOptions; track option.value) {
-        <option [value]="option.value" [selected]="task().status === option.taskStatus">{{ option.text }}</option>
+      <option [value]="option.value" [selected]="task().status === option.taskStatus">{{ option.text }}</option>
       }
     </select>
     <p>

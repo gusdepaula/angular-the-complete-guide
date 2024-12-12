@@ -11,7 +11,7 @@ import { CommonModule } from '@angular/common';
   templateUrl: './tasks-list.component.html',
   styleUrl: './tasks-list.component.css',
   imports: [TaskItemComponent, CommonModule],
-  providers: [taskStatusOptionsProvider]
+  providers: [taskStatusOptionsProvider],
 })
 export class TasksListComponent {
   private tasksService = inject(TasksServiceToken);
@@ -22,12 +22,12 @@ export class TasksListComponent {
       case 'all':
         return this.tasksService.allTasks();
       case 'open':
-        return this.tasksService.allTasks().filter((task) => task.status === 'OPEN');
+        return this.tasksService.allTasks().filter(task => task.status === 'OPEN');
       case 'inProgress':
-        return this.tasksService.allTasks().filter((task) => task.status === 'IN_PROGRESS');
+        return this.tasksService.allTasks().filter(task => task.status === 'IN_PROGRESS');
       case 'done':
-        return this.tasksService.allTasks().filter((task) => task.status === 'DONE');
-      default: 
+        return this.tasksService.allTasks().filter(task => task.status === 'DONE');
+      default:
         return this.tasksService.allTasks();
     }
   });
