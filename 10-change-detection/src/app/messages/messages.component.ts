@@ -19,6 +19,6 @@ export class MessagesComponent {
   }
 
   onAddMessage(message: string) {
-    this.messages.update((oldMessages) => [...oldMessages, message]);
+    this.messages.update(oldMessages => [...oldMessages, message]);
   }
 }
