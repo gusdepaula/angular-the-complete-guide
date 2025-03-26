@@ -1,5 +1,5 @@
 import { Component, computed, DestroyRef, effect, inject, OnInit, signal } from '@angular/core';
-import { toObservable } from '@angular/core/rxjs-interop';
+import { toObservable, toSignal } from '@angular/core/rxjs-interop';
 import { interval, map } from 'rxjs';
 
 @Component({
@@ -9,17 +9,17 @@ import { interval, map } from 'rxjs';
 })
 export class AppComponent implements OnInit {
   clickCount = signal(0);
-  clickCount$ = toObservable(this.clickCount)
+  clickCount$ = toObservable(this.clickCount);
+  interval$ = interval(1000);
+  intervalSignal = toSignal(this.interval$, { initialValue: 0 });
   // interval = signal(0);
   // doubleInterval = computed(() => this.interval() * 2);
-
   private destroyRef = inject(DestroyRef);
 
   constructor() {
-  //   effect(() => {
+  //  effect(() => {
   //     console.log('clickCount:', this.clickCount());
   // })
-    
   }
 
   ngOnInit(): void {
