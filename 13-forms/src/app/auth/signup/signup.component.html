@@ -1,10 +1,10 @@
-<form>
+<form [formGroup]="form" (ngSubmit)="onSubmit()">
   <h2>Welcome on board!</h2>
   <p>We just need a little bit of data from you to get you started 🚀</p>
 
   <div class="control">
     <label for="email">Email</label>
-    <input id="email" type="email" name="email" />
+    <input id="email" type="email" name="email" formControlName="email" />
   </div>
 
   <div class="control-row">
@@ -14,16 +14,13 @@
         id="password"
         type="password"
         name="password"
+        formControlName="password"
       />
     </div>
 
     <div class="control">
       <label for="confirm-password">Confirm Password</label>
-      <input
-        id="confirm-password"
-        type="password"
-        name="confirm-password"
-      />
+      <input id="confirm-password" type="password" name="confirm-password" />
     </div>
   </div>
 
@@ -33,20 +30,12 @@
     <div class="control-row">
       <div class="control">
         <label for="first-name">First Name</label>
-        <input
-          type="text"
-          id="first-name"
-          name="first-name"
-        />
+        <input type="text" id="first-name" name="first-name" />
       </div>
 
       <div class="control">
         <label for="last-name">Last Name</label>
-        <input
-          type="text"
-          id="last-name"
-          name="last-name"
-        />
+        <input type="text" id="last-name" name="last-name" />
       </div>
     </div>
 
@@ -97,32 +86,17 @@
   <fieldset>
     <legend>How did you find us?</legend>
     <div class="control">
-      <input
-        type="checkbox"
-        id="google"
-        name="acquisition"
-        value="google"
-      />
+      <input type="checkbox" id="google" name="acquisition" value="google" />
       <label for="google">Google</label>
     </div>
 
     <div class="control">
-      <input
-        type="checkbox"
-        id="friend"
-        name="acquisition"
-        value="friend"
-      />
+      <input type="checkbox" id="friend" name="acquisition" value="friend" />
       <label for="friend">Referred by friend</label>
     </div>
 
     <div class="control">
-      <input
-        type="checkbox"
-        id="other"
-        name="acquisition"
-        value="other"
-      />
+      <input type="checkbox" id="other" name="acquisition" value="other" />
       <label for="other">Other</label>
     </div>
   </fieldset>
@@ -130,18 +104,25 @@
   <div class="control-row">
     <div class="control">
       <label for="terms-and-conditions">
-        <input
-          type="checkbox"
-          id="terms-and-conditions"
-          name="terms"
-        />
+        <input type="checkbox" id="terms-and-conditions" name="terms" />
         I agree to the terms and conditions
       </label>
     </div>
   </div>
 
   <p class="form-actions">
-    <button type="reset" class="button button-flat">Reset</button>
+    <button type="reset" class="button button-flat" (click)="onReset()">
+      Reset
+    </button>
     <button type="submit" class="button">Sign up</button>
   </p>
+
+  @if(emailIsInvalid){
+  <p class="control-error">Please enter a valid e-mail addres.</p>
+  } @if(passwordIsInvalid){
+  <p class="control-error">
+    Please enter a valid password.(must be at least 6 characters and contain a
+    question mark)
+  </p>
+  }
 </form>
