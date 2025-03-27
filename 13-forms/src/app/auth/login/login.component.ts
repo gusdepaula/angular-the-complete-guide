@@ -15,6 +15,9 @@ export class LoginComponent {
   });
 
   onSubmit(): void {
-    // this.form.value.email;
+    console.log(this.form);
+    const enteredEmail = this.form.value.email;
+    const enteredPassword = this.form.value.password;
+    console.log(enteredEmail, enteredPassword);
   }
 }
