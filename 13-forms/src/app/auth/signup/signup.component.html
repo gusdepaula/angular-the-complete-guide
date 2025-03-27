@@ -170,7 +170,7 @@
     <button type="submit" class="button">Sign up</button>
   </p>
 
-  @if(emailIsInvalid){
-  <p class="control-error">Please enter a valid e-mail addres.</p>
+  @if(form.invalid && form.touched){
+  <p class="control-error">Invalid form - please check your input data.</p>
   }
 </form>
