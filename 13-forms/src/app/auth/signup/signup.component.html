@@ -7,7 +7,7 @@
     <input id="email" type="email" name="email" formControlName="email" />
   </div>
 
-  <div class="control-row">
+  <div class="control-row" formGroupName="passwords">
     <div class="control">
       <label for="password">Password</label>
       <input
@@ -24,7 +24,7 @@
         id="confirm-password"
         type="password"
         name="confirm-password"
-        formControlName="confirmPassword"
+        formControlName="passwords.confirmPassword"
       />
     </div>
   </div>
@@ -54,7 +54,7 @@
       </div>
     </div>
 
-    <fieldset>
+    <fieldset formGroupName="address">
       <legend>Your Address</legend>
 
       <div class="control-row">
