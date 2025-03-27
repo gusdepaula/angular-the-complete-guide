@@ -29,10 +29,12 @@
     </div>
 
     <button class="button">Login</button>
-    @if(email.touched && password.touched && form.form.invalid) {
+    @if(email.touched && email.dirty && email.invalid) {
     <p class="control-error">
-      Invalid values detected. Please check the form and try again.
+      Invalid email address entered. Please enter a valid email address.
     </p>
+    } @if(password.touched && password.dirty && password.invalid) {
+    <p class="control-error">Password must be at least 6 characters long.</p>
     }
   </div>
 </form>
