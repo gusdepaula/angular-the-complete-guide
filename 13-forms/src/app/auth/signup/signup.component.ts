@@ -1,6 +1,7 @@
 import { NgFor } from '@angular/common';
 import { Component, DestroyRef, inject } from '@angular/core';
 import {
+  FormArray,
   FormControl,
   FormGroup,
   ReactiveFormsModule,
@@ -49,12 +50,16 @@ export class SignupComponent {
         validators: [Validators.required],
       }),
     }),
-
     role: new FormControl<
       'student' | 'teacher' | 'employee' | 'founder' | 'other'
     >('student', {
       validators: [Validators.required],
     }),
+    source: new FormArray([
+      new FormControl(false),
+      new FormControl(false),
+      new FormControl(false),
+    ]),
     agree: new FormControl(false, {
       validators: [Validators.requiredTrue],
     }),
@@ -65,14 +70,6 @@ export class SignupComponent {
       this.form.controls.email.invalid &&
       this.form.controls.email.touched &&
       this.form.controls.email.dirty
-    );
-  }
-
-  get passwordIsInvalid() {
-    return (
-      this.form.controls.password.invalid &&
-      this.form.controls.password.touched &&
-      this.form.controls.password.dirty
     );
   }
 

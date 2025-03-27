@@ -24,7 +24,7 @@
         id="confirm-password"
         type="password"
         name="confirm-password"
-        formControlName="passwords.confirmPassword"
+        formControlName="confirmPassword"
       />
     </div>
   </div>
@@ -113,20 +113,38 @@
     </div>
   </div>
 
-  <fieldset>
+  <fieldset formArrayName="source">
     <legend>How did you find us?</legend>
     <div class="control">
-      <input type="checkbox" id="google" name="acquisition" value="google" />
+      <input
+        type="checkbox"
+        id="google"
+        name="acquisition"
+        value="google"
+        formControlName="0"
+      />
       <label for="google">Google</label>
     </div>
 
     <div class="control">
-      <input type="checkbox" id="friend" name="acquisition" value="friend" />
+      <input
+        type="checkbox"
+        id="friend"
+        name="acquisition"
+        value="friend"
+        formControlName="1"
+      />
       <label for="friend">Referred by friend</label>
     </div>
 
     <div class="control">
-      <input type="checkbox" id="other" name="acquisition" value="other" />
+      <input
+        type="checkbox"
+        id="other"
+        name="acquisition"
+        value="other"
+        formControlName="2"
+      />
       <label for="other">Other</label>
     </div>
   </fieldset>
@@ -154,10 +172,5 @@
 
   @if(emailIsInvalid){
   <p class="control-error">Please enter a valid e-mail addres.</p>
-  } @if(passwordIsInvalid){
-  <p class="control-error">
-    Please enter a valid password.(must be at least 6 characters and contain a
-    question mark)
-  </p>
   }
 </form>
