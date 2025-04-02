@@ -12,5 +12,8 @@ export const routes: Routes = [
     path: 'users/:userId',
     component: UserTasksComponent,
     children: userRoutes,
+    data: {
+      message: 'This is a message from the parent route',
+    },
   },
 ];
