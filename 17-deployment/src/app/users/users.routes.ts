@@ -1,7 +1,11 @@
 import { Routes } from '@angular/router';
 
-import { TasksComponent, resolveUserTasks } from '../tasks/tasks.component';
-import { NewTaskComponent, canLeaveEditPage } from '../tasks/new-task/new-task.component';
+import { TasksComponent } from '../tasks/tasks.component';
+import {
+  NewTaskComponent,
+  canLeaveEditPage,
+} from '../tasks/new-task/new-task.component';
+import { UserTasksComponent } from './user-tasks/user-tasks.component';
 
 export const routes: Routes = [
   {
@@ -14,12 +18,12 @@ export const routes: Routes = [
     component: TasksComponent,
     runGuardsAndResolvers: 'always',
     resolve: {
-      userTasks: resolveUserTasks,
+      userTasks: UserTasksComponent,
     },
   },
   {
     path: 'tasks/new',
     component: NewTaskComponent,
-    canDeactivate: [canLeaveEditPage]
+    canDeactivate: [canLeaveEditPage],
   },
 ];
